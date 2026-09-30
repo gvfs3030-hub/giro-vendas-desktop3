@@ -75,3 +75,12 @@ Isso permite transportar `config`, clientes, produtos, vendas, itens, parcelas, 
 O projeto original enviado pelo usuário é Expo/React Native e foi usado como referência de comportamento e banco. A interface desktop não reaproveita os componentes React Native diretamente; ela foi redesenhada para mouse, teclado e telas grandes, usando Electron.
 
 O banco, nomes das tabelas e principais regras de negócio foram mantidos para facilitar compatibilidade de dados.
+
+## Correção do GitHub Actions
+
+O workflow não usa `cache: npm`, porque este projeto não depende de um `package-lock.json` enviado ao GitHub. O `npm install` instala as dependências diretamente no runner do Windows.
+
+
+### CI/GitHub Actions
+
+O build usa `--publish never` para gerar apenas o instalador como Artifact do GitHub Actions, sem exigir `GH_TOKEN`.
