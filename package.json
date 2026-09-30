@@ -1,0 +1,56 @@
+{
+  "name": "giro-vendas-desktop",
+  "version": "1.2.0",
+  "description": "Giro Vendas Desktop para Windows - adaptação do projeto mobile original",
+  "main": "src/main.js",
+  "author": "Projeto Saturnino",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "rebuild-native": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
+    "electron": "^36.3.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.giro.vendas.desktop",
+    "productName": "Giro Vendas",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "src/assets/logo.png",
+        "to": "assets/logo.png"
+      }
+    ],
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "Giro-Vendas-Desktop-Setup.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Giro Vendas"
+    }
+  }
+}
